@@ -22,7 +22,13 @@
 
         <% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
 
-
+        <h3> Login est : <% out.print(current_user.getLogin()); %> </h3>
+        <h3> Password est : <% out.print(current_user.getPassword()); %> </h3>
+        <h3> Prenom est : <% out.print(current_user.getPrenom()); %> </h3>
+        <h3> Nom est : <% out.print(current_user.getNom()); %> </h3>
+        <h3> dateNaissance est : <% out.print(current_user.getDateNaissance()); %> </h3>
+        
+        
     </div>
 
 
