@@ -12,4 +12,39 @@
         <servlet-name>Status</servlet-name>
         <url-pattern>/status</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>servlet.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>BeanServlet</servlet-name>
+        <servlet-class>servlet.BeanServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BeanServlet</servlet-name>
+        <url-pattern>/Bean</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
 </web-app>
