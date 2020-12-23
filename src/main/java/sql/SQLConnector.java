@@ -65,7 +65,7 @@ public class SQLConnector {
             result = stmt.executeQuery(rqString);
         }
         catch (SQLException e){
-            e.printStackTrace();
+            System.out.println("AAAAAAAAAAAAAAAAAAH");
         }
 
         return result;

@@ -20,6 +20,8 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         SQLConnector sc = new SQLConnector();
 
+
+
         if(!login.equals("") && !password.equals("")){
 
             UserBean current_user = sc.getUser(login, password);
