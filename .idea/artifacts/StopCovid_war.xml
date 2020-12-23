@@ -1,14 +1,14 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="ProjetJEE:war">
+  <artifact type="war" name="StopCovid:war">
     <output-path>$PROJECT_DIR$/target</output-path>
     <properties id="maven-jee-properties">
       <options>
-        <module>ProjetJEE</module>
+        <module>StopCovid</module>
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="ProjetJEE-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="ProjetJEE:war exploded" />
+    <root id="archive" name="StopCovid-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="StopCovid:war exploded" />
     </root>
   </artifact>
 </component>

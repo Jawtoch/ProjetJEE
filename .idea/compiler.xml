@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ProjetJEE" />
+        <module name="StopCovid" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ProjetJEE" target="1.8" />
+      <module name="StopCovid" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
