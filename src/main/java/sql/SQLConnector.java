@@ -27,6 +27,7 @@ public class SQLConnector {
                     user.setPrenom(res.getString("prenom"));
                     user.setDateNaissance(res.getDate("dateNaissance"));
                     user.setRang(res.getString("rang"));
+                    user.setId(res.getInt("id"));
                 }
                 else {
                     nbUser++;
@@ -41,14 +42,53 @@ public class SQLConnector {
         return user;
     }
 
+    public boolean isUserExists(String login){
+
+        String rqString = "Select * from User where login='"+login+"';";
+        ResultSet res = doRequest(rqString);
+        int nbUser = 0;
+
+        try {
+            while(res.next()) {
+                nbUser++;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return nbUser > 0;
+    }
+
 
     public void createUser(String login, String password, String nom, String prenom, String dateNaissance) {
+
+        //Créer un utilisateur seulement s'il n'existe pas déjà
+        if(! isUserExists(login)){
+
+            Connection connection = connect();
+
+            try {
+                Statement stmt = connection.createStatement();
+                String rqString = "INSERT INTO user (login, password, nom, prenom, dateNaissance, rang) VALUES ('"+login+"','"+password+"','"+nom+"','"+prenom+"','"+dateNaissance+"','utilisateur');";
+                stmt.executeUpdate(rqString);
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
+
+    public void modifyUser(String login, String password, String nom, String prenom, String dateNaissance, String oldLogin) {
 
         Connection connection = connect();
 
         try {
             Statement stmt = connection.createStatement();
-            String rqString = "INSERT INTO user (login, password, nom, prenom, dateNaissance, rang) VALUES ('"+login+"','"+password+"','"+nom+"','"+prenom+"','"+dateNaissance+"','utilisateur');";
+            String rqString = "UPDATE user SET login='"+login+"', password ='"+password+"', nom ='"+nom+"', prenom ='"+prenom+"', dateNaissance ='"+dateNaissance+"' WHERE login = '"+oldLogin+"';";
             stmt.executeUpdate(rqString);
         }
         catch (SQLException e) {

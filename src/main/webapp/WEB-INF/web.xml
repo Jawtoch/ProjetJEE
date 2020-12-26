@@ -23,6 +23,15 @@
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ModifyAccountServlet</servlet-name>
+        <servlet-class>servlet.ModifyAccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModifyAccountServlet</servlet-name>
+        <url-pattern>/ModifyAccount</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>

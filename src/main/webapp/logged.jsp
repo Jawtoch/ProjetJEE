@@ -8,36 +8,83 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css" />
     <title>Title</title>
 </head>
+
 <body>
 
-
-<div class="container">
-    <label>Vous êtes connecté en utilisateur</label>
+<div class="box">
 
 
-    </br>
-    <div class="col-md-12">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Modifier mon compte </h2>
 
-        <% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
+            <!-- Afficher Liste amis -->
+            <div class="formFooter">
+                <a class="underlineHover" href=account.jsp> Voir mes informations </a>
+            </div>
 
-        <h3> Login est : <% out.print(current_user.getLogin()); %> </h3>
-        <h3> Password est : <% out.print(current_user.getPassword()); %> </h3>
-        <h3> Prenom est : <% out.print(current_user.getPrenom()); %> </h3>
-        <h3> Nom est : <% out.print(current_user.getNom()); %> </h3>
-        <h3> dateNaissance est : <% out.print(current_user.getDateNaissance()); %> </h3>
-
-
-
-
-        
+        </div>
     </div>
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Ajouter un ami </h2>
+
+            <!-- Friend -->
+            <form action="AddFriend" method="post">
+                <input type="text" id="username" class="fadeIn second" name="username" placeholder="Friends username">
+                <input type="submit" class="fadeIn third" value="Add Friend">
+            </form>
+
+            <!-- Afficher Liste amis -->
+            <div class="formFooter">
+                <a class="underlineHover" href=#> Afficher mes amis </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Ajouter une activité </h2>
+
+            <!-- Login Form -->
+            <form action="AddActivity" method="post">
+                <input type="text" id="lieu" class="fadeIn second" name="lieu" placeholder="Lieu">
+                <input type="submit" class="fadeIn third" value="Add activity">
+            </form>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Alerte Positif </h2>
+
+            <!-- Login Form -->
+            <form action="Alerte" method="post">
+                <input type="submit" class="fadeIn third" value="Lancer l'alerte">
+            </form>
+
+        </div>
+    </div>
+
+
 
 
 </div>
 
-
-
 </body>
+
 </html>

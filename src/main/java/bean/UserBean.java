@@ -18,6 +18,7 @@ public class UserBean {
         this.nom = null;
         this.prenom = null;
         this.dateNaissance = null;
+        this.rang = null;
     }
 
     public String getLogin(){return this.login;}
