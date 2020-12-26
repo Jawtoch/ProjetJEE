@@ -27,7 +27,14 @@ public class BeanServlet extends HttpServlet {
             request.getRequestDispatcher("login.html").forward(request, response);
         }
         else{
-            request.getRequestDispatcher("logged.jsp").forward(request, response);
+            if(current_user.getRang().trim().equals("utilisateur")) {
+                request.getRequestDispatcher( "logged.jsp" ).forward( request, response );
+            }
+            else {
+                if(current_user.getRang().trim().equals("admin")) {
+                    request.getRequestDispatcher( "admin.jsp" ).forward( request, response );
+                }
+            }
         }
     }
 }

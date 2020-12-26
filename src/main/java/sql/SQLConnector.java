@@ -26,10 +26,11 @@ public class SQLConnector {
                     user.setNom(res.getString("nom"));
                     user.setPrenom(res.getString("prenom"));
                     user.setDateNaissance(res.getDate("dateNaissance"));
+                    user.setRang(res.getString("rang"));
                 }
                 else {
                     nbUser++;
-                    System.out.println("Plus d'un utilisateur ayant le meme login ?");
+                    System.out.println("Plus d'un utilisateur ayant le meme login");
                 }
             }
         }
@@ -47,7 +48,7 @@ public class SQLConnector {
 
         try {
             Statement stmt = connection.createStatement();
-            String rqString = "INSERT INTO user (login, password, nom, prenom, dateNaissance) VALUES ('"+login+"','"+password+"','"+nom+"','"+prenom+"','"+dateNaissance+"');";
+            String rqString = "INSERT INTO user (login, password, nom, prenom, dateNaissance, rang) VALUES ('"+login+"','"+password+"','"+nom+"','"+prenom+"','"+dateNaissance+"','utilisateur');";
             stmt.executeUpdate(rqString);
         }
         catch (SQLException e) {
@@ -65,7 +66,7 @@ public class SQLConnector {
             result = stmt.executeQuery(rqString);
         }
         catch (SQLException e){
-            System.out.println("AAAAAAAAAAAAAAAAAAH");
+            e.printStackTrace();
         }
 
         return result;

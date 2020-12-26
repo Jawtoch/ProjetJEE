@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 
         }
 
-
+        //Page de redirection utilisateur/admin
         response.sendRedirect("Bean");
 
 

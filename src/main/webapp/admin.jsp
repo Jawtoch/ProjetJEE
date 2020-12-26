@@ -14,13 +14,21 @@
 
 
 <div class="container">
-    <label>Vous êtes connecté en utilisateur</label>
+    <label>Vous êtes connecté en admin</label>
 
 
     </br>
     <div class="col-md-12">
 
+
+
         <% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
+
+        <%
+            if(current_user.getRang().trim().equals("utilisateur")) {
+                request.getRequestDispatcher( "logged.jsp" ).forward( request, response );
+            }
+        %>
 
         <h3> Login est : <% out.print(current_user.getLogin()); %> </h3>
         <h3> Password est : <% out.print(current_user.getPassword()); %> </h3>
@@ -30,8 +38,6 @@
 
 
 
-
-        
     </div>
 
 

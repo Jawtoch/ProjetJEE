@@ -36,6 +36,7 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("current_user",null);
         }
 
+        //Page de redirection utilisateur/admin
         response.sendRedirect("/Bean");
 
     }
