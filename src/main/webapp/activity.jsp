@@ -24,11 +24,11 @@
 
         <!-- Form -->
         <form action="AddActivity" method="post">
-            <input type="text" id="lieu" class="fadeIn second" name="lieu" placeholder="lieu">
-            <input type="text" id="adresse" class="fadeIn second" name="adresse" placeholder="adresse">
-            <input type="date" id="date" class="fadeIn third" name="date" placeholder="date">
-            <input type="text" id="heureDebut" class="fadeIn third" name="heureDebut" placeholder="heureDebut">
-            <input type="text" id="heureFin" class="fadeIn third" name="heureFin" placeholder="heureFin">
+            <input type="text" id="lieu" class="fadeIn second" name="lieu" placeholder="lieu" required>
+            <input type="text" id="adresse" class="fadeIn second" name="adresse" placeholder="adresse" required>
+            <input type="date" id="date" class="fadeIn third" name="date" placeholder="date" required>
+            <input type="time" id="heureDebut" class="fadeIn third" name="heureDebut" placeholder="heureDebut">
+            <input type="time" id="heureFin" class="fadeIn third" name="heureFin" placeholder="heureFin">
 
             <input type="hidden" id="idUser" name="idUser" value=<% out.print(current_user.getId()); %>>
 

@@ -4,6 +4,8 @@ package sql;
 import bean.UserBean;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLConnector {
 
@@ -101,6 +103,31 @@ public class SQLConnector {
         }
 
     }
+
+    public List<String> loadNotifications(int idUser) {
+        List<String> notifications = new ArrayList<>();
+
+        Connection connection = connect();
+        try {
+            Statement stmt = connection.createStatement();
+            String rqString = "SELECT * FROM notification WHERE idUser = '"+idUser+"';";
+            ResultSet res = doRequest(rqString);
+            try {
+                while(res.next()) {
+                        notifications.add("L'utilisateur " + res.getString("loginUserCovid") + " a été testé positif au Covid-19, vous l'avez peut-être rencontré le "
+                                + res.getString("date") +" à " + res.getString("lieu") );
+                }
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+                    }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return notifications;
+    }
+
 
     private ResultSet doRequest(String rqString) {
         ResultSet result = null;

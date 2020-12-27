@@ -21,11 +21,16 @@
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Tabs Titles -->
-            <h2 class="active"> Modifier mon compte </h2>
+            <h2 class="active"> Mon compte </h2>
 
-            <!-- Voir infos compte redirection vers account.jsp -->
+            <!-- Voir infos compte : redirection vers account.jsp -->
             <div class="formFooter">
-                <a class="underlineHover" href=account.jsp> Voir mes informations </a>
+                <a class="underlineHover" href=account.jsp> Modifier mes informations </a>
+            </div>
+
+            <!-- Voir notifications redirection vers LoadNotificationServlet -->
+            <div class="formFooter">
+                <a class="underlineHover" href=LoadNotification> Voir mes notifications </a>
             </div>
 
         </div>

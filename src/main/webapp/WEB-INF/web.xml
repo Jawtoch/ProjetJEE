@@ -33,6 +33,15 @@
         <url-pattern>/AddActivity</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LoadNotificationServlet</servlet-name>
+        <servlet-class>servlet.LoadNotificationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadNotificationServlet</servlet-name>
+        <url-pattern>/LoadNotification</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
