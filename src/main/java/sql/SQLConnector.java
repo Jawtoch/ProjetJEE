@@ -43,11 +43,9 @@ public class SQLConnector {
     }
 
     public boolean isUserExists(String login){
-
         String rqString = "Select * from User where login='"+login+"';";
         ResultSet res = doRequest(rqString);
         int nbUser = 0;
-
         try {
             while(res.next()) {
                 nbUser++;
@@ -56,16 +54,13 @@ public class SQLConnector {
         catch (SQLException e) {
             e.printStackTrace();
         }
-
         return nbUser > 0;
     }
 
 
     public void createUser(String login, String password, String nom, String prenom, String dateNaissance) {
-
         //Créer un utilisateur seulement s'il n'existe pas déjà
         if(! isUserExists(login)){
-
             Connection connection = connect();
 
             try {
@@ -76,16 +71,13 @@ public class SQLConnector {
             catch (SQLException e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
 
     public void modifyUser(String login, String password, String nom, String prenom, String dateNaissance, String oldLogin) {
 
         Connection connection = connect();
-
         try {
             Statement stmt = connection.createStatement();
             String rqString = "UPDATE user SET login='"+login+"', password ='"+password+"', nom ='"+nom+"', prenom ='"+prenom+"', dateNaissance ='"+dateNaissance+"' WHERE login = '"+oldLogin+"';";
@@ -96,6 +88,19 @@ public class SQLConnector {
         }
     }
 
+
+    public void addActivity(String lieu, String adresse, String dateActivity, String heureDebut, String heureFin, String idUser) {
+        Connection connection = connect();
+        try {
+            Statement stmt = connection.createStatement();
+            String rqString = "INSERT INTO activity (lieu, adresse, dateActivity, heureDebut, heureFin, idUser) VALUES ('"+lieu+"','"+adresse+"','"+dateActivity+"','"+heureDebut+"','"+heureFin+"','"+idUser+"');";
+            stmt.executeUpdate(rqString);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     private ResultSet doRequest(String rqString) {
         ResultSet result = null;

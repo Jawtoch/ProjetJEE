@@ -10,38 +10,35 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "RegisterServlet")
-public class RegisterServlet extends HttpServlet {
+@WebServlet(name = "AddActivityServlet")
+public class AddActivityServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String lieu = request.getParameter("lieu");
+        String adresse = request.getParameter("adresse");
+        String date = request.getParameter("date");
+        String heureDebut = request.getParameter("heureDebut");
+        String heureFin = request.getParameter("heureFin");
+        String idUser = request.getParameter("idUser");
 
-
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String dateNaissance = request.getParameter("dateNaissance");
 
         HttpSession session = request.getSession();
         SQLConnector sc = new SQLConnector();
 
-        if(!login.equals("") && !password.equals("")) {
-            sc.createUser(login, password, nom, prenom, dateNaissance);
+        if(!lieu.equals("") && !date.equals("")) {
+            sc.addActivity(lieu, adresse, date, heureDebut, heureFin, idUser);
         }
-        else {
-
-            session.setAttribute("msg-err"," Login/Password ne doivent pas être vide");
-
-            session.setAttribute("current_user",null);
-            request.setAttribute("current_user",null);
+        else{
+            session.setAttribute("msg-err"," Lieu/Date ne doivent pas être vide");
         }
 
         //Page de redirection utilisateur/admin
         response.sendRedirect("Bean");
 
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("Bean");
+        doPost(request, response);
     }
 }

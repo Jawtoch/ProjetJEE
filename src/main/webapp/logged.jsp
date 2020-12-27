@@ -23,13 +23,30 @@
             <!-- Tabs Titles -->
             <h2 class="active"> Modifier mon compte </h2>
 
-            <!-- Afficher Liste amis -->
+            <!-- Voir infos compte redirection vers account.jsp -->
             <div class="formFooter">
                 <a class="underlineHover" href=account.jsp> Voir mes informations </a>
             </div>
 
         </div>
     </div>
+
+
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Ajouter une activité </h2>
+
+
+            <!-- redirection vers activity.jsp -->
+            <div class="formFooter">
+                <a class="underlineHover" href=activity.jsp> Ajouter une activité </a>
+            </div>
+
+        </div>
+    </div>
+
 
     <div class="wrapper fadeInDown">
         <div id="formContent">
@@ -49,22 +66,6 @@
 
         </div>
     </div>
-
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-            <!-- Tabs Titles -->
-            <h2 class="active"> Ajouter une activité </h2>
-
-            <!-- Login Form -->
-            <form action="AddActivity" method="post">
-                <input type="text" id="lieu" class="fadeIn second" name="lieu" placeholder="Lieu">
-                <input type="submit" class="fadeIn third" value="Add activity">
-            </form>
-
-        </div>
-    </div>
-
-
 
 
     <div class="wrapper fadeInDown">
