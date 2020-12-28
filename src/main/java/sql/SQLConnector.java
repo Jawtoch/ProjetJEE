@@ -1,6 +1,7 @@
 package sql;
 
 
+import bean.NotificationBean;
 import bean.UserBean;
 
 import java.sql.*;
@@ -104,28 +105,90 @@ public class SQLConnector {
 
     }
 
-    public List<String> loadNotifications(int idUser) {
-        List<String> notifications = new ArrayList<>();
-
+    public void sendFriendRequest(String login, String otherUserLogin) {
         Connection connection = connect();
         try {
             Statement stmt = connection.createStatement();
-            String rqString = "SELECT * FROM notification WHERE idUser = '"+idUser+"';";
-            ResultSet res = doRequest(rqString);
-            try {
-                while(res.next()) {
-                        notifications.add("L'utilisateur " + res.getString("loginUserCovid") + " a été testé positif au Covid-19, vous l'avez peut-être rencontré le "
-                                + res.getString("date") +" à " + res.getString("lieu") );
-                }
-            }
-            catch (SQLException e) {
-                e.printStackTrace();
-            }
-                    }
+            String rqString = "INSERT INTO friendNotification (userLogin, otherUserLogin) VALUES ('"+login+"','"+otherUserLogin+"');";
+            stmt.executeUpdate(rqString);
+        }
         catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<NotificationBean> loadNotifications(int idUser, String userLogin) {
+        List<NotificationBean> notifications = new ArrayList<>();
+
+
+        String rqString = "SELECT * FROM notification WHERE idUser = '"+idUser+"';";
+        ResultSet res = doRequest(rqString);
+        try {
+            while(res.next()) {
+                NotificationBean notification = new NotificationBean();
+
+                notification.setNotification("L'utilisateur " + res.getString("loginUserCovid") + " a été testé positif au Covid-19, vous l'avez peut-être rencontré le "
+                        + res.getString("date") +" à " + res.getString("lieu"));
+                notification.setId(res.getInt("id"));
+                notification.setType("covid");
+
+                notifications.add(notification);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+        rqString = "SELECT * FROM friendnotification WHERE userLogin = '"+userLogin+"';";
+        res = doRequest(rqString);
+        try {
+            while(res.next()) {
+                NotificationBean notification = new NotificationBean();
+
+                notification.setNotification("L'utilisateur " + res.getString("otherUserLogin") + " vous a demandé en ami, voulez-vous l'accepter ? ");
+                notification.setId(res.getInt("id"));
+                notification.setType("friend");
+
+                notifications.add(notification);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return notifications;
+    }
+
+
+    public void acceptNotification(String id, String type) {
+        Connection connection = connect();
+        try {
+            Statement stmt = connection.createStatement();
+            //String rqString = "INSERT INTO friendNotification (userLogin, otherUserLogin) VALUES ('"+login+"','"+otherUserLogin+"');";
+            //stmt.executeUpdate(rqString);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void declineNotification(String id, String type) {
+        Connection connection = connect();
+        try {
+            Statement stmt = connection.createStatement();
+            String rqString = "";
+            if(type.equals("covid"))
+                rqString = "DELETE FROM notification WHERE id = '"+id+"';";
+            else if(type.equals("friend"))
+                rqString = "DELETE FROM friendnotification WHERE id = '"+id+"';";
+
+            stmt.executeUpdate(rqString);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

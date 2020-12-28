@@ -1,5 +1,6 @@
 package servlet;
 
+import bean.NotificationBean;
 import bean.UserBean;
 import sql.SQLConnector;
 
@@ -10,29 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 
-@WebServlet(name = "LoadNotificationServlet")
-public class LoadNotificationServlet extends HttpServlet {
+@WebServlet(name = "AcceptNotifServlet")
+public class AcceptNotifServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-        HttpSession session = request.getSession();
         SQLConnector sc = new SQLConnector();
 
-        UserBean current_user = (UserBean) session.getAttribute("current_user");
-        int idUser = current_user.getId();
-        String userLogin = current_user.getLogin();
+        String id = request.getParameter( "id" );
+        String type = request.getParameter( "type" );
 
-        //ArrayList<String> notifications = new ArrayList<>();
-        session.setAttribute("notifications",sc.loadNotifications(idUser, userLogin));
+        sc.acceptNotification(id, type);
 
         //Page de redirection utilisateur/admin
-        response.sendRedirect("notification.jsp");
+        response.sendRedirect("Bean");
+
 
     }
 }

@@ -66,17 +66,16 @@
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Tabs Titles -->
-            <h2 class="active"> Ajouter un ami </h2>
+            <h2 class="active"> Mes amis </h2>
 
-            <!-- Friend -->
-            <form action="AddFriend" method="post">
-                <input type="text" id="username" class="fadeIn second" name="username" placeholder="Friends username">
-                <input type="submit" class="fadeIn third" value="Add Friend">
-            </form>
-
-            <!-- Afficher Liste amis -->
+            <!-- Ajouter un ami redirection vers addFriend.jsp -->
             <div class="formFooter">
-                <a class="underlineHover" href=#> Afficher mes amis </a>
+                <a class="underlineHover" href=addFriend.jsp> Ajouter un ami </a>
+            </div>
+
+            <!-- Afficher Liste amis redirection vers showFriends.jsp -->
+            <div class="formFooter">
+                <a class="underlineHover" href=showFriends.jsp> Afficher mes amis </a>
             </div>
 
         </div>

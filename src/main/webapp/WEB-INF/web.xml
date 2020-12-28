@@ -71,6 +71,33 @@
         <url-pattern>/Disconnect</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>SendFriendRequestServlet</servlet-name>
+        <servlet-class>servlet.SendFriendRequestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SendFriendRequestServlet</servlet-name>
+        <url-pattern>/SendFriendRequest</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AcceptNotifServlet</servlet-name>
+        <servlet-class>servlet.AcceptNotifServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AcceptNotifServlet</servlet-name>
+        <url-pattern>/AcceptNotif</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeclineNotifServlet</servlet-name>
+        <servlet-class>servlet.DeclineNotifServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeclineNotifServlet</servlet-name>
+        <url-pattern>/DeclineNotif</url-pattern>
+    </servlet-mapping>
+
 
     <error-page>
         <error-code>404</error-code>
