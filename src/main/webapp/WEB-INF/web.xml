@@ -62,6 +62,15 @@
         <url-pattern>/Bean</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>DisconnectServlet</servlet-name>
+        <servlet-class>servlet.DisconnectServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DisconnectServlet</servlet-name>
+        <url-pattern>/Disconnect</url-pattern>
+    </servlet-mapping>
+
 
     <error-page>
         <error-code>404</error-code>

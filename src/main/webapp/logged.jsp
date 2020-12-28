@@ -33,6 +33,11 @@
                 <a class="underlineHover" href=LoadNotification> Voir mes notifications </a>
             </div>
 
+            <!-- Se déconnecter redirection vers DisconnectServlet -->
+            <div class="formFooter">
+                <a class="underlineHover" href=Disconnect> Se déconnecter </a>
+            </div>
+
         </div>
     </div>
 
@@ -47,6 +52,11 @@
             <!-- redirection vers activity.jsp -->
             <div class="formFooter">
                 <a class="underlineHover" href=activity.jsp> Ajouter une activité </a>
+            </div>
+
+            <!-- redirection vers # -->
+            <div class="formFooter">
+                <a class="underlineHover" href=#> Voir mes activités </a>
             </div>
 
         </div>

@@ -28,7 +28,8 @@
             <input type="text" id="password" class="fadeIn second" name="password" placeholder=<% out.print(current_user.getPassword()); %>>
             <input type="text" id="nom" class="fadeIn third" name="nom" placeholder=<% out.print(current_user.getNom()); %>>
             <input type="text" id="prenom" class="fadeIn third" name="prenom" placeholder=<% out.print(current_user.getPrenom()); %>>
-            <input type="text" id="dateNaissance" class="fadeIn third" name="dateNaissance" placeholder=<% out.print(current_user.getDateNaissance()); %>>
+            <br> <label> Date de Naissance </label>
+            <input type="date" id="dateNaissance" class="fadeIn third" name="dateNaissance" placeholder=<% out.print(current_user.getDateNaissance()); %>>
 
             <input type="hidden" id="oldLogin" name="oldLogin" value=<% out.print(current_user.getLogin()); %>>
 
