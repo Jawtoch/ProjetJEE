@@ -22,7 +22,6 @@
 
     <%
         for (NotificationBean notification : notifications) {
-            session.setAttribute("notif", notification);
             int id = notification.getId();
             String type = notification.getType();
 

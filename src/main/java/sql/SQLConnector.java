@@ -109,7 +109,7 @@ public class SQLConnector {
         Connection connection = connect();
         try {
             Statement stmt = connection.createStatement();
-            String rqString = "INSERT INTO friendNotification (userLogin, otherUserLogin) VALUES ('"+login+"','"+otherUserLogin+"');";
+            String rqString = "INSERT INTO friendNotification (userLogin, otherUserLogin, actual) VALUES ('"+login+"','"+otherUserLogin+"', 'Friend');";
             stmt.executeUpdate(rqString);
         }
         catch (SQLException e) {
@@ -147,9 +147,17 @@ public class SQLConnector {
             while(res.next()) {
                 NotificationBean notification = new NotificationBean();
 
-                notification.setNotification("L'utilisateur " + res.getString("otherUserLogin") + " vous a demandé en ami, voulez-vous l'accepter ? ");
+                if(res.getString("actual").equals("Friend")){
+                    notification.setNotification("L'utilisateur " + res.getString("otherUserLogin") + " vous a demandé en ami, voulez-vous l'accepter ? ");
+                    notification.setType("friend");
+                }
+                else{
+                    notification.setNotification("L'utilisateur " + res.getString("otherUserLogin") + " vous a supprimé de sa liste d'amis ");
+                    notification.setType("nofriend");
+                }
+
                 notification.setId(res.getInt("id"));
-                notification.setType("friend");
+
 
                 notifications.add(notification);
             }
@@ -195,8 +203,9 @@ public class SQLConnector {
             String rqString = "";
             if(type.equals("covid"))
                 rqString = "DELETE FROM notification WHERE id = '"+id+"';";
-            else if(type.equals("friend"))
+            else
                 rqString = "DELETE FROM friendnotification WHERE id = '"+id+"';";
+
 
             stmt.executeUpdate(rqString);
         }
@@ -205,6 +214,69 @@ public class SQLConnector {
         }
     }
 
+
+    public List<UserBean> loadFriends(String userLogin) {
+        List<UserBean> friends = new ArrayList<>();
+
+
+        String rqString = "SELECT * FROM friend WHERE userLogin1 = '"+userLogin+"';";
+        ResultSet res = doRequest(rqString);
+        try {
+            while(res.next()) {
+                UserBean user = new UserBean();
+                user.setLogin(res.getString("userLogin2"));
+                friends.add(user);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        rqString = "SELECT * FROM friend WHERE userLogin2 = '"+userLogin+"';";
+        res = doRequest(rqString);
+        try {
+            while(res.next()) {
+                UserBean user = new UserBean();
+                user.setLogin(res.getString("userLogin1"));
+                friends.add(user);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.println(friends);
+        return friends;
+    }
+
+
+    public void deleteFriend(String userLogin1, String userLogin2) {
+        Connection connection = connect();
+        try {
+            Statement stmt = connection.createStatement();
+            String rqString = "";
+
+            rqString = "DELETE FROM friend WHERE userLogin1 = '"+userLogin1+"' AND userLogin2 = '"+userLogin2+"';";
+            stmt.executeUpdate(rqString);
+
+            rqString = "DELETE FROM friend WHERE userLogin1 = '"+userLogin2+"' AND userLogin2 = '"+userLogin1+"';";
+            stmt.executeUpdate(rqString);
+
+            //Notifier userLogin1 que userLogin2 l'a supprimé de sa liste d'amis
+            try {
+                stmt = connection.createStatement();
+                rqString = "INSERT INTO friendNotification (userLogin, otherUserLogin, actual) VALUES ('"+userLogin1+"','"+userLogin2+"','noFriend');";
+                stmt.executeUpdate(rqString);
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     private ResultSet doRequest(String rqString) {
         ResultSet result = null;

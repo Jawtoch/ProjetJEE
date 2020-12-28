@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css" />
-    <title>Title</title>
+    <title>Menu</title>
 </head>
 
 <body>
@@ -75,7 +75,7 @@
 
             <!-- Afficher Liste amis redirection vers showFriends.jsp -->
             <div class="formFooter">
-                <a class="underlineHover" href=showFriends.jsp> Afficher mes amis </a>
+                <a class="underlineHover" href=LoadFriends> Afficher mes amis </a>
             </div>
 
         </div>

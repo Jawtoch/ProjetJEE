@@ -98,6 +98,24 @@
         <url-pattern>/DeclineNotif</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LoadFriendsServlet</servlet-name>
+        <servlet-class>servlet.LoadFriendsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadFriendsServlet</servlet-name>
+        <url-pattern>/LoadFriends</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteFriendServlet</servlet-name>
+        <servlet-class>servlet.DeleteFriendServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteFriendServlet</servlet-name>
+        <url-pattern>/DeleteFriend</url-pattern>
+    </servlet-mapping>
+
 
     <error-page>
         <error-code>404</error-code>
