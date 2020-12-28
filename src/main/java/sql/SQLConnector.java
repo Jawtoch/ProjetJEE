@@ -162,16 +162,30 @@ public class SQLConnector {
     }
 
 
-    public void acceptNotification(String id, String type) {
+    public void acceptNotification(String id)  {
         Connection connection = connect();
+
+        String rqString = "SELECT * FROM friendnotification WHERE id = '"+id+"';";
+        ResultSet res = doRequest(rqString);
         try {
-            Statement stmt = connection.createStatement();
-            //String rqString = "INSERT INTO friendNotification (userLogin, otherUserLogin) VALUES ('"+login+"','"+otherUserLogin+"');";
-            //stmt.executeUpdate(rqString);
+            while(res.next()) {
+                String userLogin1 = res.getString("userLogin");
+                String userLogin2 = res.getString("otherUserLogin");
+
+                Statement stmt = connection.createStatement();
+                rqString = "INSERT INTO friend(userLogin1, userLogin2) VALUES ('"+userLogin1+"','"+userLogin2+"');";
+                stmt.executeUpdate(rqString);
+
+                rqString = "DELETE FROM friendnotification WHERE id = '"+id+"';";
+                stmt.executeUpdate(rqString);
+            }
+
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
+
+
     }
 
     public void declineNotification(String id, String type) {

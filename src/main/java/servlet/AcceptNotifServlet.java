@@ -23,9 +23,7 @@ public class AcceptNotifServlet extends HttpServlet {
         SQLConnector sc = new SQLConnector();
 
         String id = request.getParameter( "id" );
-        String type = request.getParameter( "type" );
-
-        sc.acceptNotification(id, type);
+        sc.acceptNotification(id);
 
         //Page de redirection utilisateur/admin
         response.sendRedirect("Bean");

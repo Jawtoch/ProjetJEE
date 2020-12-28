@@ -34,8 +34,14 @@
             out.write("</h2>");
 
             out.write("<div id=\"formFooter\">");
-            out.write("<a class=\"underlineHover\" href=AcceptNotif?id="+id+"&type="+type+"> Accepter   |</a>");
-            out.write("<a class=\"underlineHover\" href=DeclineNotif?id="+id+"&type="+type+"> |   Supprimer </a>");
+            if(type.equals("friend")){
+                out.write("<a class=\"underlineHover\" href=AcceptNotif?id="+id+"&type="+type+"> Accepter   |</a>");
+                out.write("<a class=\"underlineHover\" href=DeclineNotif?id="+id+"&type="+type+"> |   Supprimer </a>");
+            }
+            else{
+                out.write("<a class=\"underlineHover\" href=DeclineNotif?id="+id+"&type="+type+"> Supprimer </a>");
+            }
+
             out.write("</div>");
 
             out.write("</div>");
