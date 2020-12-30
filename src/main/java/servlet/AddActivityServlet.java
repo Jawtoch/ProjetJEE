@@ -19,14 +19,14 @@ public class AddActivityServlet extends HttpServlet {
         String date = request.getParameter("date");
         String heureDebut = request.getParameter("heureDebut");
         String heureFin = request.getParameter("heureFin");
-        String idUser = request.getParameter("idUser");
+        String userLogin = request.getParameter("userLogin");
 
 
         HttpSession session = request.getSession();
         SQLConnector sc = new SQLConnector();
 
         if(!lieu.equals("") && !date.equals("")) {
-            sc.addActivity(lieu, adresse, date, heureDebut, heureFin, idUser);
+            sc.addActivity(lieu, adresse, date, heureDebut, heureFin, userLogin);
         }
         else{
             session.setAttribute("msg-err"," Lieu/Date ne doivent pas être vide");

@@ -30,7 +30,7 @@
             <input type="time" id="heureDebut" class="fadeIn third" name="heureDebut" placeholder="heureDebut">
             <input type="time" id="heureFin" class="fadeIn third" name="heureFin" placeholder="heureFin">
 
-            <input type="hidden" id="idUser" name="idUser" value=<% out.print(current_user.getId()); %>>
+            <input type="hidden" id="userLogin" name="userLogin" value=<% out.print(current_user.getLogin()); %>>
 
             <h5> <%
                 if(session.getAttribute("msg-err") != null)

@@ -1,6 +1,7 @@
 package sql;
 
 
+import bean.ActiviteBean;
 import bean.NotificationBean;
 import bean.UserBean;
 
@@ -92,11 +93,11 @@ public class SQLConnector {
     }
 
 
-    public void addActivity(String lieu, String adresse, String dateActivity, String heureDebut, String heureFin, String idUser) {
+    public void addActivity(String lieu, String adresse, String dateActivity, String heureDebut, String heureFin, String userLogin) {
         Connection connection = connect();
         try {
             Statement stmt = connection.createStatement();
-            String rqString = "INSERT INTO activity (lieu, adresse, dateActivity, heureDebut, heureFin, idUser) VALUES ('"+lieu+"','"+adresse+"','"+dateActivity+"','"+heureDebut+"','"+heureFin+"','"+idUser+"');";
+            String rqString = "INSERT INTO activity (lieu, adresse, dateActivity, heureDebut, heureFin, userLogin) VALUES ('"+lieu+"','"+adresse+"','"+dateActivity+"','"+heureDebut+"','"+heureFin+"','"+userLogin+"');";
             stmt.executeUpdate(rqString);
         }
         catch (SQLException e) {
@@ -223,7 +224,6 @@ public class SQLConnector {
     public List<UserBean> loadFriends(String userLogin) {
         List<UserBean> friends = new ArrayList<>();
 
-
         String rqString = "SELECT * FROM friend WHERE userLogin1 = '"+userLogin+"';";
         ResultSet res = doRequest(rqString);
         try {
@@ -282,15 +282,33 @@ public class SQLConnector {
         }
     }
 
+    public List<ActiviteBean> loadActivites(String userLogin) {
+        List<ActiviteBean> activites = new ArrayList<>();
+
+        String rqString = "SELECT * FROM activity WHERE userLogin = '"+userLogin+"';";
+        ResultSet res = doRequest(rqString);
+        try {
+            while(res.next()) {
+                ActiviteBean activite = new ActiviteBean();
+                activite.setLieu(res.getString("lieu"));
+                activite.setDate(res.getString("dateActivity"));
+                activites.add(activite);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return activites;
+    }
 
     public void alertePositif(String loginUserCovid) {
-
-        List<UserBean> friends = new ArrayList<>();
+        //Notifier liste d'amis
+        List<UserBean> friends;
         friends = loadFriends(loginUserCovid);
 
         String rqString = "";
         Connection connection = connect();
-
         for(UserBean user : friends){
             try {
                 Statement stmt = connection.createStatement();
@@ -302,9 +320,28 @@ public class SQLConnector {
             }
         }
 
+        //Notifier utilisateurs avec Lieu/Date en commun
 
-            //Notifier utilisateurs avec Lieu/Date en commun
+        List<ActiviteBean> activites;
+        activites = loadActivites(loginUserCovid);
 
+        for(ActiviteBean activite : activites){
+            rqString = "SELECT * FROM activity WHERE lieu = '"+activite.getLieu()+"' AND dateActivity = '"+activite.getDate()+"';";
+            ResultSet res = doRequest(rqString);
+            try {
+                String rqStringBis = "";
+                while(res.next()) {
+                    if(!res.getString("userLogin").equals(loginUserCovid)){
+                        Statement stmt = connection.createStatement();
+                        rqStringBis = "INSERT INTO notification (userLogin, loginUserCovid, lieu, date) VALUES ('"+res.getString("userLogin")+"','"+loginUserCovid+"','"+res.getString("lieu")+"','"+res.getString("dateActivity")+"');";
+                        stmt.executeUpdate(rqStringBis);
+                    }
+                }
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 
 
 
