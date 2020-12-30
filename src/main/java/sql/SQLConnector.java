@@ -307,6 +307,19 @@ public class SQLConnector {
         return activites;
     }
 
+    public void deleteActivity(String id) {
+        Connection connection = connect();
+        try {
+            Statement stmt = connection.createStatement();
+            String rqString = "DELETE FROM activity WHERE id = '"+id+"';";
+            stmt.executeUpdate(rqString);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void alertePositif(String loginUserCovid) {
         //Notifier liste d'amis
         List<UserBean> friends;

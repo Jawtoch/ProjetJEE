@@ -134,6 +134,16 @@
         <url-pattern>/LoadActivities</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>DeleteActivityServlet</servlet-name>
+        <servlet-class>servlet.DeleteActivityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteActivityServlet</servlet-name>
+        <url-pattern>/DeleteActivity</url-pattern>
+    </servlet-mapping>
+
+
 
     <error-page>
         <error-code>404</error-code>

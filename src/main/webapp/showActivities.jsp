@@ -33,16 +33,14 @@
             out.write("<div id=\"formContent\">");
 
             out.write("<h2 class=\"active\">");
-            out.write(lieu);
-            out.write(date);
-            out.write(heureDebut + "  à  " + heureFin);
-            out.write(adresse);
-
+            out.write("Le " + date);
+            out.write(" à " + lieu +", " + adresse);
+            out.write(" de : " +heureDebut + "  à  " + heureFin);
             out.write("</h2>");
 
             out.write("<div id=\"formFooter\">");
 
-            out.write("<a class=\"underlineHover\" href=DeleteActivite?login="+id+"> Supprimer </a>");
+            out.write("<a class=\"underlineHover\" href=DeleteActivity?id="+id+"> Supprimer </a>");
             out.write("</div>");
             out.write("</div>");
             out.write("</div>");
