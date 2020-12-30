@@ -116,16 +116,21 @@
         <url-pattern>/DeleteFriend</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>AlerteServlet</servlet-name>
+        <servlet-class>servlet.AlerteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AlerteServlet</servlet-name>
+        <url-pattern>/Alerte</url-pattern>
+    </servlet-mapping>
+
 
     <error-page>
         <error-code>404</error-code>
         <location>/404.html</location>
     </error-page>
 
-    <error-page>
-        <error-code>500</error-code>
-        <location>/500.html</location>
-    </error-page>
 
 
 

@@ -25,11 +25,10 @@ public class LoadNotificationServlet extends HttpServlet {
         SQLConnector sc = new SQLConnector();
 
         UserBean current_user = (UserBean) session.getAttribute("current_user");
-        int idUser = current_user.getId();
         String userLogin = current_user.getLogin();
 
         //ArrayList<String> notifications = new ArrayList<>();
-        session.setAttribute("notifications",sc.loadNotifications(idUser, userLogin));
+        session.setAttribute("notifications",sc.loadNotifications(userLogin));
 
         //Page de redirection utilisateur/admin
         response.sendRedirect("notification.jsp");

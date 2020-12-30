@@ -26,7 +26,7 @@ public class AcceptNotifServlet extends HttpServlet {
         sc.acceptNotification(id);
 
         //Page de redirection utilisateur/admin
-        response.sendRedirect("Bean");
+        response.sendRedirect("LoadNotification");
 
 
     }

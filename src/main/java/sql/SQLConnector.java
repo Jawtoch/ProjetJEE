@@ -117,18 +117,23 @@ public class SQLConnector {
         }
     }
 
-    public List<NotificationBean> loadNotifications(int idUser, String userLogin) {
+    public List<NotificationBean> loadNotifications(String userLogin) {
         List<NotificationBean> notifications = new ArrayList<>();
 
 
-        String rqString = "SELECT * FROM notification WHERE idUser = '"+idUser+"';";
+        String rqString = "SELECT * FROM notification WHERE userLogin = '"+userLogin+"';";
         ResultSet res = doRequest(rqString);
         try {
             while(res.next()) {
                 NotificationBean notification = new NotificationBean();
+                if(!res.getString("lieu").equals("default")){
+                    notification.setNotification("L'utilisateur " + res.getString("loginUserCovid") + " a été testé positif au Covid-19, vous l'avez peut-être rencontré le "
+                            + res.getString("date") +" à " + res.getString("lieu"));
+                }
+                else{
+                    notification.setNotification("Votre ami : " + res.getString("loginUserCovid") + " a été testé positif au Covid-19");
+                }
 
-                notification.setNotification("L'utilisateur " + res.getString("loginUserCovid") + " a été testé positif au Covid-19, vous l'avez peut-être rencontré le "
-                        + res.getString("date") +" à " + res.getString("lieu"));
                 notification.setId(res.getInt("id"));
                 notification.setType("covid");
 
@@ -246,7 +251,6 @@ public class SQLConnector {
         }
 
 
-        System.out.println(friends);
         return friends;
     }
 
@@ -276,6 +280,35 @@ public class SQLConnector {
         catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void alertePositif(String loginUserCovid) {
+
+        List<UserBean> friends = new ArrayList<>();
+        friends = loadFriends(loginUserCovid);
+
+        String rqString = "";
+        Connection connection = connect();
+
+        for(UserBean user : friends){
+            try {
+                Statement stmt = connection.createStatement();
+                rqString = "INSERT INTO notification (userLogin, loginUserCovid) VALUES ('"+user.getLogin()+"','"+loginUserCovid+"');";
+                stmt.executeUpdate(rqString);
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+            //Notifier utilisateurs avec Lieu/Date en commun
+
+
+
+
+
     }
 
     private ResultSet doRequest(String rqString) {

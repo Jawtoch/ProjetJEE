@@ -29,7 +29,7 @@ public class DeleteFriendServlet extends HttpServlet {
         sc.deleteFriend(userLogin1, userLogin2);
 
         //Page de redirection utilisateur/admin
-        response.sendRedirect("Bean");
+        response.sendRedirect("LoadFriends");
 
     }
 }
