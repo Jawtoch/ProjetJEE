@@ -125,12 +125,25 @@
         <url-pattern>/Alerte</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LoadActivitiesServlet</servlet-name>
+        <servlet-class>servlet.LoadActivitiesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadActivitiesServlet</servlet-name>
+        <url-pattern>/LoadActivities</url-pattern>
+    </servlet-mapping>
+
 
     <error-page>
         <error-code>404</error-code>
         <location>/404.html</location>
     </error-page>
 
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500.html</location>
+    </error-page>
 
 
 

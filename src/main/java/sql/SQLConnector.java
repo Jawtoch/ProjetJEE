@@ -292,6 +292,11 @@ public class SQLConnector {
                 ActiviteBean activite = new ActiviteBean();
                 activite.setLieu(res.getString("lieu"));
                 activite.setDate(res.getString("dateActivity"));
+                activite.setHeureDebut(res.getString("HeureDebut"));
+                activite.setHeureFin(res.getString("HeureFin"));
+                activite.setAdresse(res.getString("adresse"));
+                activite.setId(res.getInt("id"));
+
                 activites.add(activite);
             }
         }

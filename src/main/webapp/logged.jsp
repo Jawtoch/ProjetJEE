@@ -54,9 +54,9 @@
                 <a class="underlineHover" href=activity.jsp> Ajouter une activité </a>
             </div>
 
-            <!-- redirection vers # -->
+            <!-- redirection vers LoadActivities -->
             <div class="formFooter">
-                <a class="underlineHover" href=#> Voir mes activités </a>
+                <a class="underlineHover" href=LoadActivities> Voir mes activités </a>
             </div>
 
         </div>
