@@ -8,42 +8,98 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Menu admin</title>
 </head>
+
 <body>
 
-
-<div class="container">
-    <label>Vous êtes connecté en admin</label>
+<div class="box">
 
 
-    </br>
-    <div class="col-md-12">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Mon compte </h2>
 
+            <!-- Voir infos compte : redirection vers account.jsp -->
+            <div class="formFooter">
+                <a class="underlineHover" href=account.jsp> Modifier mes informations </a>
+            </div>
 
+            <!-- Voir notifications redirection vers LoadNotificationServlet -->
+            <div class="formFooter">
+                <a class="underlineHover" href=LoadNotification> Voir mes notifications </a>
+            </div>
 
-        <% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
+            <!-- Se déconnecter redirection vers DisconnectServlet -->
+            <div class="formFooter">
+                <a class="underlineHover" href=Disconnect> Se déconnecter </a>
+            </div>
 
-        <%
-            if(current_user.getRang().trim().equals("utilisateur")) {
-                request.getRequestDispatcher( "logged.jsp" ).forward( request, response );
-            }
-        %>
-
-        <h3> Login est : <% out.print(current_user.getLogin()); %> </h3>
-        <h3> Password est : <% out.print(current_user.getPassword()); %> </h3>
-        <h3> Prenom est : <% out.print(current_user.getPrenom()); %> </h3>
-        <h3> Nom est : <% out.print(current_user.getNom()); %> </h3>
-        <h3> dateNaissance est : <% out.print(current_user.getDateNaissance()); %> </h3>
-
-
-
+        </div>
     </div>
+
+
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Ajouter une activité </h2>
+
+
+            <!-- redirection vers activity.jsp -->
+            <div class="formFooter">
+                <a class="underlineHover" href=activity.jsp> Ajouter une activité </a>
+            </div>
+
+            <!-- redirection vers LoadActivities -->
+            <div class="formFooter">
+                <a class="underlineHover" href=LoadActivities> Voir mes activités </a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Mes amis </h2>
+
+            <!-- Ajouter un ami redirection vers addFriend.jsp -->
+            <div class="formFooter">
+                <a class="underlineHover" href=addFriend.jsp> Ajouter un ami </a>
+            </div>
+
+            <!-- Afficher Liste amis redirection vers showFriends.jsp -->
+            <div class="formFooter">
+                <a class="underlineHover" href=LoadFriends> Afficher mes amis </a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Alerte Positif </h2>
+
+            <!-- Login Form -->
+            <form action="Alerte" method="post">
+                <input type="submit" class="fadeIn third" value="Lancer l'alerte">
+            </form>
+
+        </div>
+    </div>
+
+
 
 
 </div>
 
-
-
 </body>
+
 </html>

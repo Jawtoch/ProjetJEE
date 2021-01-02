@@ -52,6 +52,13 @@
     <div class="wrapper fadeInDown">
         <!-- Retour au menu -->
         <div id="formFooter">
+            <a class="underlineHover" href=showActivitiesCalendar.jsp> Afficher le calendrier </a>
+        </div>
+    </div>
+
+    <div class="wrapper fadeInDown">
+        <!-- Retour au menu -->
+        <div id="formFooter">
             <a class="underlineHover" href=Bean> Retour au menu </a>
         </div>
     </div>
