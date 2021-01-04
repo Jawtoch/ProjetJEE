@@ -85,6 +85,25 @@
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Tabs Titles -->
+            <h2 class="active"> Gestion du site </h2>
+
+            <!-- Ajouter un ami redirection vers deleteUser.jsp -->
+            <div class="formFooter">
+                <a class="underlineHover" href=deleteUser.jsp> Supprimer un utilisateur </a>
+            </div>
+
+            <!-- Afficher Liste amis redirection vers showActivitiesAdmin.jsp -->
+            <div class="formFooter">
+                <a class="underlineHover" href=showActivitiesAdmin.jsp> Supprimer une activité </a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
             <h2 class="active"> Alerte Positif </h2>
 
             <!-- Login Form -->

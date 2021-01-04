@@ -143,6 +143,16 @@
         <url-pattern>/DeleteActivity</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <servlet-class>servlet.DeleteUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <url-pattern>/DeleteUser</url-pattern>
+    </servlet-mapping>
+
+
 
 
     <error-page>

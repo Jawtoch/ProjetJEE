@@ -360,11 +360,69 @@ public class SQLConnector {
                 e.printStackTrace();
             }
         }
-
-
-
-
     }
+
+
+    public void deleteUser(String userLogin) {
+        Connection connection = connect();
+        try {
+            Statement stmt = connection.createStatement();
+            String rqString = "DELETE FROM user WHERE login = '"+userLogin+"' ;";
+            stmt.executeUpdate(rqString);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            Statement stmt = connection.createStatement();
+            String rqString = "DELETE FROM notification WHERE userLogin = '"+userLogin+"' ;";
+            stmt.executeUpdate(rqString);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            Statement stmt = connection.createStatement();
+            String rqString = "DELETE FROM activity WHERE userLogin = '"+userLogin+"' ;";
+            stmt.executeUpdate(rqString);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            Statement stmt = connection.createStatement();
+            String rqString = "DELETE FROM friendnotification WHERE userLogin = '"+userLogin+"' ;";
+            stmt.executeUpdate(rqString);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            Statement stmt = connection.createStatement();
+            String rqString = "DELETE FROM friendnotification WHERE otherUserLogin = '"+userLogin+"' ;";
+            stmt.executeUpdate(rqString);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            Statement stmt = connection.createStatement();
+            String rqString = "DELETE FROM friend WHERE userLogin1 = '"+userLogin+"' ;";
+            stmt.executeUpdate(rqString);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            Statement stmt = connection.createStatement();
+            String rqString = "DELETE FROM friend WHERE userLogin2 = '"+userLogin+"' ;";
+            stmt.executeUpdate(rqString);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private ResultSet doRequest(String rqString) {
         ResultSet result = null;
