@@ -364,6 +364,22 @@ public class SQLConnector {
             catch (SQLException e) {
                 e.printStackTrace();
             }
+
+            rqString = "SELECT * FROM activity WHERE adresse = '"+activite.getAdresse()+"' AND dateActivity = '"+activite.getDate()+"';";
+            ResultSet resAdresse = doRequest(rqString);
+            try {
+                String rqStringBis = "";
+                while(resAdresse.next()) {
+                    if(!resAdresse.getString("userLogin").equals(loginUserCovid)){
+                        Statement stmt = connection.createStatement();
+                        rqStringBis = "INSERT INTO notification (userLogin, loginUserCovid, lieu, date) VALUES ('"+resAdresse.getString("userLogin")+"','"+loginUserCovid+"','"+resAdresse.getString("lieu")+"','"+resAdresse.getString("dateActivity")+"');";
+                        stmt.executeUpdate(rqStringBis);
+                    }
+                }
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
