@@ -4,6 +4,7 @@ package sql;
 import bean.ActiviteBean;
 import bean.NotificationBean;
 import bean.UserBean;
+import servlet.DeleteFriendServlet;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -284,8 +285,12 @@ public class SQLConnector {
 
     public List<ActiviteBean> loadActivites(String userLogin) {
         List<ActiviteBean> activites = new ArrayList<>();
+        String rqString = "";
+        if(userLogin.equals("all"))
+            rqString = "SELECT * FROM activity ;";
+        else
+            rqString = "SELECT * FROM activity WHERE userLogin = '"+userLogin+"';";
 
-        String rqString = "SELECT * FROM activity WHERE userLogin = '"+userLogin+"';";
         ResultSet res = doRequest(rqString);
         try {
             while(res.next()) {

@@ -94,7 +94,7 @@
 
             <!-- Afficher Liste amis redirection vers showActivitiesAdmin.jsp -->
             <div class="formFooter">
-                <a class="underlineHover" href=showActivitiesAdmin.jsp> Supprimer une activité </a>
+                <a class="underlineHover" href=LoadActivitiesAdmin> Supprimer une activité </a>
             </div>
 
         </div>
