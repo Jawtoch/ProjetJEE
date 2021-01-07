@@ -21,11 +21,16 @@
 
 
         <% UserBean current_user = (UserBean) session.getAttribute("current_user");%>
-
         <!-- Form -->
         <form action="AddActivity" method="post">
             <input type="text" id="lieu" class="fadeIn second" name="lieu" placeholder="lieu" required>
-            <input type="text" id="adresse" class="fadeIn second" name="adresse" placeholder="adresse" required>
+            <%
+            if(session.getAttribute("adresse") == null){
+                out.write("<input type=\"text\" id=\"adresse\" class=\"fadeIn second\" name=\"adresse\" placeholder=\"adresse\" required>");
+            }
+
+
+            %>
             <input type="date" id="date" class="fadeIn third" name="date" placeholder="date" required>
             <input type="time" id="heureDebut" class="fadeIn third" name="heureDebut" placeholder="heureDebut">
             <input type="time" id="heureFin" class="fadeIn third" name="heureFin" placeholder="heureFin">
@@ -40,6 +45,11 @@
 
             <input type="submit" class="fadeIn fourth" value="Ajouter l'activité">
         </form>
+
+        <!-- Map -->
+        <div id="formFooter">
+            <a class="underlineHover" href=map.jsp> Chercher une adresse sur la map </a>
+        </div>
 
         <!-- Retour au menu -->
         <div id="formFooter">

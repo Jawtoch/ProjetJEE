@@ -42,6 +42,11 @@
             <input type="submit" class="fadeIn fourth" value="Modifier mes infos">
         </form>
 
+        <div id="formFooter">
+            <img src="images/1.png">
+            <a class="underlineHover" href=upload.jsp> Télécharger une image </a>
+        </div>
+
         <!-- Retour au menu -->
         <div id="formFooter">
             <a class="underlineHover" href=Bean> Retour au menu </a>

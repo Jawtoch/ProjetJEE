@@ -14,16 +14,25 @@ import java.io.IOException;
 public class AddActivityServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
+        SQLConnector sc = new SQLConnector();
+
         String lieu = request.getParameter("lieu");
         String adresse = request.getParameter("adresse");
+
+        if(adresse == null){
+            adresse = (String) session.getAttribute("adresse");
+            session.setAttribute("adresse",null);
+        }
+
+
         String date = request.getParameter("date");
         String heureDebut = request.getParameter("heureDebut");
         String heureFin = request.getParameter("heureFin");
         String userLogin = request.getParameter("userLogin");
 
 
-        HttpSession session = request.getSession();
-        SQLConnector sc = new SQLConnector();
+
 
         if(!lieu.equals("") && !date.equals("")) {
             sc.addActivity(lieu, adresse, date, heureDebut, heureFin, userLogin);
