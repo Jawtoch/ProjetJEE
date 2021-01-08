@@ -1,5 +1,10 @@
 package bean;
 
+import models.schema.SchemaBuilder;
+import models.schema.field.DataType;
+import models.schema.field.FieldContrain;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Date;
 
 public class UserBean {
@@ -38,5 +43,29 @@ public class UserBean {
     public void setDateNaissance(Date date){this.dateNaissance = date;}
     public void setId(int id){this.id = id;}
     public void setRang(String rang){this.rang = rang;}
+
+    public static class Migration implements models.migration.Migration {
+        @Override
+        public void prepare(SchemaBuilder schema) throws Exception {
+            schema.id(DataType.Integer)
+                    .field("login", DataType.String)
+                    .field("password", DataType.String)
+                    .field("nom", DataType.String)
+                    .field("prenom", DataType.String)
+                    .field("dateNaissance", DataType.Date)
+                    .field("rang", DataType.String)
+                    .create();
+        }
+
+        @Override
+        public void revert(SchemaBuilder schema) {
+
+        }
+
+        @Override
+        public @NotNull String getSchema() {
+            return "User";
+        }
+    }
 
 }

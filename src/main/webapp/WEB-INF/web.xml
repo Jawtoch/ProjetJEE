@@ -5,7 +5,9 @@
          version="4.0">
 
 
-
+    <listener>
+        <listener-class>servlet.MigratorServlet</listener-class>
+    </listener>
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>

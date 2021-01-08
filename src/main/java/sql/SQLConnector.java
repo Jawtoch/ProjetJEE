@@ -4,7 +4,6 @@ package sql;
 import bean.ActiviteBean;
 import bean.NotificationBean;
 import bean.UserBean;
-import servlet.DeleteFriendServlet;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -128,11 +127,15 @@ public class SQLConnector {
         try {
             while(res.next()) {
                 NotificationBean notification = new NotificationBean();
-                if(!res.getString("lieu").equals("default")){
+
+                System.out.println(res.getObject("lieu"));
+
+                if (!res.wasNull()) {
+                    // If a place is present
                     notification.setNotification("L'utilisateur " + res.getString("loginUserCovid") + " a été testé positif au Covid-19, vous l'avez peut-être rencontré le "
                             + res.getString("date") +" à " + res.getString("lieu"));
-                }
-                else{
+                } else {
+                    // no place
                     notification.setNotification("Votre ami : " + res.getString("loginUserCovid") + " a été testé positif au Covid-19");
                 }
 
@@ -466,17 +469,16 @@ public class SQLConnector {
 
         Connection connection = null;
 
-        try{
+        /*try{
             Class.forName("com.mysql.cj.jdbc.Driver");
         }
         catch (ClassNotFoundException e){
             System.out.println("impossible de charger le pilote jdbc");
-        }
+        }*/
 
 
         try{
-            String DBurl = "jdbc:mysql://localhost:3306/base_projet_jee?useSSL=false&serverTimezone=UTC";
-            connection = DriverManager.getConnection(DBurl, "root", "");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + System.getenv("DB_DATABASE"), System.getenv("DB_USERNAME"), System.getenv("DB_PASSWORD"));
         }
         catch(SQLException e){
             e.printStackTrace();
